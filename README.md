@@ -20,7 +20,7 @@ handson
 apiVersion:
 kind:
 metadata:
-  name:
+  name: nginx-dep   # //kubectl get deployments `name`
 spec:
   selector:
     matchLabels:
@@ -36,4 +36,33 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
+```
+```
+kubectl create -f nginx-dep.yaml
+kubectl get deployments
+```
+
+```
+kubectl describe deployment nginx-dep
+```
+
+##### 5:11
+```
+kubectl set image deployment/nginx-dep nginx=nginx:1.8
+```
+```
+kubectl rollout status deployment/nginx-dep
+kubectl rollout history deployment/nginx-dep --revision=3
+kubectl rollout undo deployment/nginx-dep --to-revision=2
+```
+
+### Service Networking
+```
+kubectl expose deployment nginx-dep --type="NodePort" --port 80
+kubectl get service
+```
+
+### Ingress
+```
+kubectl expose pod web-01 --type="ClusterIP" --port 80
 ```
