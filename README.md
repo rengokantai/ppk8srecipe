@@ -66,3 +66,26 @@ kubectl get service
 ```
 kubectl expose pod web-01 --type="ClusterIP" --port 80
 ```
+
+sample file:
+```
+apiVersion: v1
+kind: Service
+meatadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+  - name: http-new
+    port: 80
+    targetPort: 80
+    protocol: TCP
+    nodePort: 30090
+selector:
+  app.kubernetes.io/name: ingress-nginx
+  app.kubernetes.io/part-of: ingress-nginx
+```
