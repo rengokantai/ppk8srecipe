@@ -102,11 +102,19 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: lube-master.labs.local
+  - host: kube-master.labs.local
     http:
       paths:
         path: /
         backend:
           serviceName: web-01
           servicePort: 80
+```
+```
+kubectl get ingress
+```
+##### 06:43
+modify host file. modify
+```
+192.1.1.2 kube-master.labs.local
 ```
