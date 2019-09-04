@@ -89,3 +89,24 @@ selector:
   app.kubernetes.io/name: ingress-nginx
   app.kubernetes.io/part-of: ingress-nginx
 ```
+```
+kubectl get service --all-namespaces
+```
+##### 05:08 ingress
+```
+kind: Ingress
+metadata:
+  name: ingress-test
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: lube-master.labs.local
+    http:
+      paths:
+        path: /
+        backend:
+          serviceName: web-01
+          servicePort: 80
+```
