@@ -118,3 +118,26 @@ modify host file. modify
 ```
 192.1.1.2 kube-master.labs.local
 ```
+
+### Deploying a Load Balancer
+```
+kind: Service
+metadata:
+  name:
+spec:
+  selector:
+    app:
+  ports:
+  - protocol: TCP
+    port:
+    targetPort: 9376
+  clusterIP:
+  loadBalancerIP:
+  type:
+```
+
+### Configure and Use Cluster DNS
+```
+kubectl get pods -n kube-system
+```
+## 4. Self-Healing and Auto-Scaling
